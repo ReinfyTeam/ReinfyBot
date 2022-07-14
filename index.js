@@ -8,6 +8,18 @@ client.commands = new Collection();
 const config = require("./config.json");
 // We also need to make sure we're attaching the config to the CLIENT so it's accessible everywhere!
 client.config = config;
+const express = require('express'); // enable express on nodejs
+const app = express(); // make web/app express
+
+app.use(express.static('public')); // set website to public
+
+app.get('/', (request, response) => {
+  response.sendFile(__dirname + '/index.html'); // make response file to enable uptimerobot.com to status code "200"
+});
+const listener = app.listen(process.env.PORT, () => {
+  console.log("Server Started.")
+});
+
 const events = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 for (const file of events) {
   const eventName = file.split(".")[0];
