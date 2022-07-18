@@ -3,11 +3,7 @@
 
 name: Lint
 
-on:
-  push:
-    branches: [ "Stable" ]
-  pull_request:
-    branches: [ "Stable" ]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -20,16 +16,18 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Github Action Checkout
+       uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Install Dependencies
-      run: npm ci
-      run: npm init -y
+       run: npm ci
+    - name: Initialize Packages
+       run: npm init -y
     - name: Build Project
-      run: npm run build --if-present
+       run: npm run build --if-present
     - name: Check Lints
-      run: npm run check-lint --if-present
+       run: npm run check-lint --if-present
