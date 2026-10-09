@@ -1,12 +1,13 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Lint
+name: Build and lint project
 
 on: [push, pull_request]
 
 jobs:
   build:
+    name: Build and lint project
 
     runs-on: ubuntu-latest
 
@@ -16,18 +17,18 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Github Actions Checkout
+    - name: Check out repository
       uses: actions/checkout@v3
     - name: Install Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: Install Dependencies
+    - name: Install Node.js dependencies
       run: npm ci
-    - name: Initialize Packages
+    - name: Initialize packages
       run: npm init -y
-    - name: Build Project
+    - name: Build project
       run: npm run build --if-present
-    - name: Check Lints
+    - name: Run lint checks
       run: npm run check-lint --if-present
