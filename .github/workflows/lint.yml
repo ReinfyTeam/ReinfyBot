@@ -18,9 +18,9 @@ jobs:
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@a37ce9120846195fa4ece8f58b268e6043cb2f26
     - name: Install Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@3235b876344d2a9aa001b8d1453c930bba69e610
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
