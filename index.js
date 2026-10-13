@@ -1,8 +1,12 @@
-const { Client, Intents, Collection } = require("discord.js");
+const { Client, GatewayIntentBits, ActivityType, Collection } = require("discord.js");
 const fs = require("fs");
  
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent
+  ]
 });
 client.commands = new Collection();
 const config = require("./config.json");
@@ -31,7 +35,7 @@ client.on("ready", () => {
     client.user.setPresence({
         activities: [{ 
           name: "my discord server!",
-          type: "WATCHING"
+          type: ActivityType.Watching
         }],
         status: "dnd"
     })
