@@ -1,4 +1,4 @@
-run = "npx node index.js"
+run = "node index.js"
 
 [nix]
-channel = "stable-21_11"
+channel = "stable-24_05"

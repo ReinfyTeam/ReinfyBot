@@ -12,7 +12,7 @@ ReinfyBot is a Discord bot for the Reinfy Discord server. It loads commands from
 
 ## Requirements
 
-- Node.js compatible with the locked dependency graph. The current Discord.js dependency tree includes packages requiring Node.js 16.9 or newer.
+- Node.js 20 or newer. CI validates Node.js 22 and 24, and the locked dependency graph includes packages requiring Node.js 18 or newer.
 - A Discord bot token with the gateway intents and permissions required by the enabled commands.
 
 The repository does not include a token loader such as `dotenv`. Provide the token as the case-sensitive `token` environment variable in the process that starts the bot. Do not commit the token or replace the tracked `config.json` with secrets.
@@ -40,7 +40,7 @@ node index.js
 
 The process starts both the Discord client and the Express status endpoint. Command modules are loaded from `commands/`, and event handlers are loaded from `events/`.
 
-The GitHub Actions workflow runs `npm ci` across its configured Node.js matrix and invokes the optional `build` and `check-lint` npm scripts when they exist. The current `package.json` does not define either script, so those optional checks are skipped until the project adds them. This repository has no separate runtime test suite; validating command behavior still requires a configured Discord test environment.
+The GitHub Actions workflow runs `npm ci` across its configured Node.js matrix and runs the repository's `check-lint` syntax check. This repository has no separate runtime test suite; validating command behavior still requires a configured Discord test environment.
 
 ## Security and operations
 
