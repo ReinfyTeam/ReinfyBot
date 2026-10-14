@@ -9,7 +9,7 @@ jobs:
   build:
     name: Build and lint ReinfyBot
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     strategy:
       matrix:
@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
     - name: Install Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
       with:
